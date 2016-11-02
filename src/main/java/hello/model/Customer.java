@@ -1,9 +1,6 @@
-package hello;
+package hello.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @SuppressWarnings("WeakerAccess")
 @Entity
@@ -12,6 +9,10 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Version
+    private Long version;
+
     private String firstName;
     private String lastName;
 
@@ -27,8 +28,8 @@ public class Customer {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
-                getId(), getFirstName(), getLastName() );
+                "Customer[id=%d, firstName='%s', lastName='%s', version=%d]",
+                getId(), getFirstName(), getLastName(), getVersion() );
     }
 
     public Long getId() {
@@ -41,6 +42,10 @@ public class Customer {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public Long getVersion() {
+        return version;
     }
 }
 

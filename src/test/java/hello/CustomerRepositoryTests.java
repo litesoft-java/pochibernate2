@@ -23,12 +23,19 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.autoconfigure.orm.jpa.*;
+import org.springframework.context.annotation.*;
+import org.springframework.test.context.*;
+import org.springframework.test.context.junit4.*;
+
+import hello.model.*;
+import hello.repos.*;
 
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-@RunWith(SpringRunner.class)
+@PropertySource("classpath:application-test.properties")
+@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringRunner.class) // Original...
+@ActiveProfiles("test")
 @DataJpaTest
 public class CustomerRepositoryTests {
     @Autowired
